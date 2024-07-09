@@ -8,7 +8,6 @@ import connectDB from "./config/db.js";
 import errorHandler from "./middlewares/errorMiddleware.js";
 import aiRoutes from './routes/aiRoutes.js';
 import productRoutes from './routes/routes.js';
-
 import userRouter from "./routes/userRoutes.js";
 import replicateRouter from "./routes/replicateRouter.js";
 
