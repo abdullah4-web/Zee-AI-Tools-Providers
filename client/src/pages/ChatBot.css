@@ -1,9 +1,0 @@
-/* Add a custom class for the button outline with a black border on hover */
-.btn-outline-custom {
-  color: black; /* Set the initial text color */
-  border-color: black; /* Set the initial border color */
-}
-
-.btn-outline-custom:hover {
-  border-color: black; /* Set the border color on hover */
-}
