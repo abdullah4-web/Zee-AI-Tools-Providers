@@ -35,6 +35,9 @@ const PORT = process.env.PORT || 8080;
 
 
 // API routes
+app.get('/', (req, res) => {
+  res.json({ message: "API is working" });
+});
 app.use('/api/users', userRouter);
 app.use('/api/v1/ai', aiRoutes);
 app.use('/api', productRoutes);
