@@ -34,7 +34,7 @@ const PORT = process.env.PORT || 8080;
 
 
 // API routes
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
   res.json({ message: "API is working" });
 });
 app.use('/api/users', userRouter);
