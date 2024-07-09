@@ -11,7 +11,6 @@ import productRoutes from './routes/routes.js';
 import userRouter from "./routes/userRoutes.js";
 import replicateRouter from "./routes/replicateRouter.js";
 
-
 // Load environment variables
 dotenv.config();
 
@@ -28,13 +27,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(errorHandler);
 
-// Set port
-const PORT = process.env.PORT || 8080;
-
-
+// Increase server timeout to 5 minutes (adjust as needed)
+const serverTimeout = 300000; // 5 minutes in milliseconds
+app.use((req, res, next) => {
+  res.setTimeout(serverTimeout, () => {
+    console.log(`Request has timed out. More than ${serverTimeout} milliseconds.`);
+    res.status(408).json({ message: 'Request Timeout' });
+  });
+  next();
+});
 
 // API routes
-app.get('/test', (req, res) => {
+app.get('/', (req, res) => {
   res.json({ message: "API is working" });
 });
 app.use('/api/users', userRouter);
@@ -42,18 +46,14 @@ app.use('/api/v1/ai', aiRoutes);
 app.use('/api', productRoutes);
 app.use('/api/rep', replicateRouter);
 
-
-
+// Global error handler
 app.use((err, req, res, next) => {
-  res.status(500).send({ message: err.message });
+  console.error(err.stack);
+  res.status(500).send({ message: 'Something went wrong!' });
 });
 
-//const __dirname = path.resolve();
-//app.use(express.static(path.join(__dirname, './client/build')));
-//app.get('*', (req, res) => {
-  //res.sendFile(path.join(__dirname, './client/build/index.html'));
-//});
-
+// Set port
+const PORT = process.env.PORT || 8080;
 
 // Start the server
 app.listen(PORT, () => {
