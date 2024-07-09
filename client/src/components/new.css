@@ -1,0 +1,45 @@
+/* Add this style to your existing styles or ToolCard.css file */
+
+.case-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .case-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+  
+  .case-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .case-overlay small {
+    font-size: 14px;
+  }
+  
+  .case-overlay h5 {
+    font-size: 18px;
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+  
+  .case-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .case-item:hover .case-overlay {
+    opacity: 0.8;
+  }
+  
